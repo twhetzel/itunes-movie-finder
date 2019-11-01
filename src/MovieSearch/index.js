@@ -11,18 +11,28 @@ class MovieSearch extends Component {
 
         this.state = {
             data: [],
+            movieName: '',
         }
         this.findMovies = this.findMovies.bind(this);
+        this.testSearch = this.testSearch.bind(this);
     }
 
     async componentDidMount() {
-        this.findMovies();
+        // this.findMovies();
+        this.testSearch();
     }
 
     findMovies(searchTerm) {
-        searchTerm = 'cars';
+        // FOR TESTING
+        // let searchTerm = 'cars';
+
+        // let searchValue = this.props.searchTerm;
+        // if (searchValue !== undefined || searchValue != null) {
+        //     console.log("** TS Props: ", searchValue);
+        // }
+
         let searchURL = `${URL}${searchTerm}`
-        console.log("** ST: ", searchURL);
+        console.log("** URL: ", searchURL);
 
         axios.get(searchURL).then(response => {
             const movieResults = response.data;
@@ -31,8 +41,30 @@ class MovieSearch extends Component {
         })
     }
 
+    testSearch = () => {
+        console.log("** Called testSearch()...")
+
+        let searchValue = this.props.searchTerm;
+        if (searchValue !== undefined || searchValue != null) {
+            console.log("** TS Props: ", searchValue);
+            this.findMovies(searchValue);
+        }
+    }
+
     render() {
         const data = this.state;
+
+        // this.testSearch();
+
+        console.log("** ST Props: ", this.props.searchTerm);
+        let searchValue = this.props.searchTerm;
+        console.log("** SV: ", searchValue);
+
+        // if (searchValue !== undefined || searchValue != null) {
+        //     // { this.findMovies(searchValue) }
+        //     this.testSearch();
+        //     console.log("Search term FOUND!", searchValue);
+        // }
 
         return (
             <MovieGrid data={data} />

@@ -97,7 +97,7 @@ class MovieGrid extends Component {
     }
 
     render() {
-        const { data } = this.props;
+        // const { data } = this.props;
         const dataDisplay = this.renderResults();
 
         return (
