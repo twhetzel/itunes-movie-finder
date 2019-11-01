@@ -2,15 +2,14 @@ import React, { Component, Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+import SimpleModal from '../SimpleModal';
+
 
 const styles = theme => ({
     root: {
@@ -23,12 +22,11 @@ const styles = theme => ({
     },
     card: {
         maxWidth: 345,
-        maxHeight: 280,
-        minHeight: 280,
+        height: 320,
     },
     media: {
         height: 140,
-    },
+    }
 });
 
 
@@ -38,10 +36,15 @@ class MovieGrid extends Component {
 
         this.renderResults = this.renderResults.bind(this);
         this.getRentalPrice = this.getRentalPrice.bind(this);
+        this.getShortDesc = this.getShortDesc.bind(this);
+    }
+
+    getShortDesc(desc) {
+        return desc ? desc : <span>&nbsp;&nbsp;</span>
     }
 
     getRentalPrice(price) {
-        return price ? '$' + price : 'Unavailable';
+        return price ? '$' + price : 'Price Unavailable';
     }
 
     renderResults = () => {
@@ -61,21 +64,22 @@ class MovieGrid extends Component {
                                 return (
                                     <Grid key={index} item xs={6} sm={3}>
                                         <Card className={classes.card}>
-                                            {/* <CardActionArea> */}
                                             <CardMedia
                                                 className={classes.media}
                                                 image={result.artworkUrl100.replace('100x100', '1200x1200')}
                                                 title={result.trackName}
                                             />
                                             <CardContent>
-                                                <Typography gutterBottom variant="h5" component="h2">
+                                                <Typography noWrap gutterBottom variant="h5" component="h2">
                                                     {result.trackName}
                                                 </Typography>
                                                 <Typography noWrap variant="body2" color="textSecondary" component="p">
-                                                    {result.shortDescription}
+                                                    {this.getShortDesc(result.shortDescription)}
                                                 </Typography>
+
+                                                <SimpleModal title={result.trackName} desc={result.longDescription} />
+
                                             </CardContent>
-                                            {/* </CardActionArea> */}
                                             <CardActions>
                                                 <Typography>
                                                     {this.getRentalPrice(result.trackRentalPrice)}
