@@ -57,7 +57,7 @@ export default function SimpleModal(props) {
 
                 <Button type="button" onClick={handleOpen}>
                     View full description
-            </Button>
+                </Button>
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"

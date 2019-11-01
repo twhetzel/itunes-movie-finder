@@ -12,14 +12,6 @@ import SimpleModal from '../SimpleModal';
 
 
 const styles = theme => ({
-    root: {
-        flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
     card: {
         maxWidth: 345,
         height: 320,
@@ -36,10 +28,10 @@ class MovieGrid extends Component {
 
         this.renderResults = this.renderResults.bind(this);
         this.getRentalPrice = this.getRentalPrice.bind(this);
-        this.getShortDesc = this.getShortDesc.bind(this);
+        this.getShortDescription = this.getShortDescription.bind(this);
     }
 
-    getShortDesc(desc) {
+    getShortDescription(desc) {
         return desc ? desc : <span>&nbsp;&nbsp;</span>
     }
 
@@ -54,7 +46,7 @@ class MovieGrid extends Component {
 
         if (searchResults !== undefined) {
             return (
-                <div className={classes.root}>
+                <div>
                     <Container>
                         <Grid container spacing={3}
                             direction="row"
@@ -74,7 +66,7 @@ class MovieGrid extends Component {
                                                     {result.trackName}
                                                 </Typography>
                                                 <Typography noWrap variant="body2" color="textSecondary" component="p">
-                                                    {this.getShortDesc(result.shortDescription)}
+                                                    {this.getShortDescription(result.shortDescription)}
                                                 </Typography>
 
                                                 <SimpleModal title={result.trackName} desc={result.longDescription} />
@@ -97,7 +89,6 @@ class MovieGrid extends Component {
     }
 
     render() {
-        // const { data } = this.props;
         const dataDisplay = this.renderResults();
 
         return (

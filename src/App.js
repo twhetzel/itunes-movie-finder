@@ -9,7 +9,6 @@ function App() {
     <Fragment>
       <AppBar />
       <Movies />
-
       <MovieSearch />
     </Fragment>
   );
