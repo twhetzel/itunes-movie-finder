@@ -11,7 +11,7 @@ Search for movies available from iTunes. The search is limited to movies in the 
 * Axios
 
 ## Installing
-Run `npm start` to run the application and download the node modules.
+Run `npm install` to install the node modules.
 
 ## Usage
 Run `npm start` to run a local instance of the application. Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser to see the web application.
